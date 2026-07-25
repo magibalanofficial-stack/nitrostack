@@ -5,7 +5,7 @@ import 'reflect-metadata';
  */
 export interface JWTModuleConfig {
   /** JWT secret (or env var name to read from) */
-  secret?: string;
+  secret?: process.env.JWT_SECRET;
   
   /** Environment variable to read secret from */
   secretEnvVar?: string;
@@ -49,6 +49,10 @@ export class JWTModule {
    * Configure JWT module for the application
    */
   static forRoot(config: JWTModuleConfig): JWTModuleConfig {
+  if (!config) {
+    throw new Error('Invalid configuration');
+  }
+  // ...
     this.config = { ...this.config, ...config };
     return this.config;
   }
@@ -69,7 +73,11 @@ export class JWTModule {
     }
     
     if (this.config.secretEnvVar) {
-      return process.env[this.config.secretEnvVar] || null;
+      const secret = process.env[this.config.secretEnvVar];
+if (!secret) {
+  throw new Error(`Environment variable ${this.config.secretEnvVar} is not set`);
+}
+return secret;
     }
     
     return null;

@@ -12,7 +12,7 @@ export class FlightTools {
         name: 'search_flights',
         description: 'Search for flight offers based on origin, destination, dates, and preferences. Returns available flight options with pricing and details.',
         inputSchema: z.object({
-            origin: z.string().length(3).describe('Origin airport IATA code (e.g., "JFK", "LHR")'),
+            origin: z.string().length(3).regex(/^[A-Z]{3}$/).describe('Origin airport IATA code (e.g., "JFK", "LHR")'),
             destination: z.string().length(3).describe('Destination airport IATA code (e.g., "LAX", "CDG")'),
             departureDate: z.string().describe('Departure date in YYYY-MM-DD format'),
             returnDate: z.string().optional().describe('Return date in YYYY-MM-DD format for round trip'),

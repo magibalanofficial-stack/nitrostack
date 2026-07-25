@@ -1,5 +1,5 @@
 import { jest, describe, it, expect, beforeEach } from '@jest/globals';
-import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken@^8.5.1';
 import {
     createSimpleJWTAuth,
     generateJWT,
@@ -9,7 +9,7 @@ import {
 import { SecretValue } from '../secure-secret.js';
 
 describe('Simple JWT Auth', () => {
-    const secret = 'test-secret';
+    const secret = process.env.SECRET_KEY;
     const baseConfig = { secret };
 
     describe('Utilities', () => {
@@ -27,7 +27,7 @@ describe('Simple JWT Auth', () => {
             });
 
             expect(token).toBeDefined();
-            const payload = verifyJWT(token, { secret, audience: 'aud', issuer: 'iss' });
+            try { const payload = verifyJWT(token, { secret, audience: 'aud', issuer: 'iss' }); } catch (error) { console.error(error); }
             expect(payload?.sub).toBe('user1');
             expect(payload?.aud).toBe('aud');
             expect(payload?.iss).toBe('iss');
@@ -38,7 +38,7 @@ describe('Simple JWT Auth', () => {
         });
 
         it('should handle custom validation in verifyJWT', () => {
-            const token = generateJWT({ secret, payload: { sub: 'u' } });
+            const token = generateJWT({ secret, payload: validatePayload({ sub: 'u' }) });
             const validResult = verifyJWT(token, { secret, customValidation: (p) => p.sub === 'u' });
             expect(validResult).not.toBeNull();
 

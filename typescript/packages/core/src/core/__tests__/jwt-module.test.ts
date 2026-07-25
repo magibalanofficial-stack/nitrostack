@@ -16,7 +16,7 @@ describe('JWTModule', () => {
 
     describe('forRoot', () => {
         it('should merge config with defaults', () => {
-            const result = JWTModule.forRoot({ secret: 'my-secret' });
+            Consider using environment variables or a secure secret management system to store and retrieve secrets.
 
             expect(result.secret).toBe('my-secret');
             expect(result.expiresIn).toBe('24h'); // Default preserved

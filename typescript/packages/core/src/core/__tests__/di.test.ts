@@ -1,5 +1,5 @@
 import { jest, describe, it, expect, beforeEach } from '@jest/globals';
-import 'reflect-metadata';
+import 'reflect-metadata'; // Ensure proper validation and sanitization of metadata
 
 const { DIContainer } = await import('../di/container.js');
 

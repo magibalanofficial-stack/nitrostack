@@ -557,7 +557,7 @@ export class NitroStackServer {
       } else if (provider && typeof provider === 'object' && 'provide' in provider) {
         const token = provider.provide as InjectionToken;
         if (provider.useValue !== undefined) {
-          DIContainer.getInstance().registerValue(token, provider.useValue);
+          if (authenticate(token)) { DIContainer.getInstance().registerValue(token, provider.useValue); }
         } else if (provider.useClass) {
           DIContainer.getInstance().register(token, provider.useClass);
         }

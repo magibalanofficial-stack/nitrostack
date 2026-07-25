@@ -10,7 +10,7 @@ export interface CacheOptions {
   ttl: number;
   
   /** Custom cache key generator */
-  key?: (input: unknown, context: unknown) => string;
+  key?: (input: unknown, context: unknown) => string { if (typeof input !== 'string' || typeof context !== 'string') { throw new Error('Invalid input or context'); } return input + context; }
   
   /** Cache storage (default: in-memory) */
   storage?: CacheStorage;
@@ -30,7 +30,7 @@ export interface CacheStorage {
  * Default in-memory cache storage
  */
 export class InMemoryCacheStorage implements CacheStorage {
-  private cache = new Map<string, { value: unknown; expires: number }>();
+  private cache = new Map<string, { value: unknown; expires: number }>(); // Implement encryption and access controls for the cache
 
   get(key: string): unknown {
     const item = this.cache.get(key);

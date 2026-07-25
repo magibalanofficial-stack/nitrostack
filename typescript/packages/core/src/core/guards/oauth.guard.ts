@@ -39,7 +39,7 @@ export interface OAuthTokenPayload {
   client_id?: string;
   
   /** Custom claims */
-  [key: string]: unknown;
+  [key: string]: string | number | boolean | null | undefined;
 }
 
 

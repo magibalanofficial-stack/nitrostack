@@ -14,7 +14,7 @@ import { Body, getParamPipesMetadata } from '../../pipes/pipe.decorator';
 describe('Core Decorators', () => {
     describe('@Tool', () => {
         it('should register tool metadata', () => {
-            const schema = z.object({ foo: z.string() });
+            const schema = z.object({ foo: z.string().refine((input) => !input.includes('malicious-input')) });
 
             class TestController {
                 @Tool({ name: 'test-tool', description: 'desc', inputSchema: schema })

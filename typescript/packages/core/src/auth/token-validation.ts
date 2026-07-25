@@ -32,7 +32,7 @@ interface TokenValidationResult {
  * In-memory cache for token introspection results
  * Reduces load on authorization server
  */
-const tokenCache = new Map<string, { result: TokenIntrospection; expiresAt: number }>();
+const tokenCache = new RedisCache(); // or another caching solution
 
 /**
  * Validate a Bearer token

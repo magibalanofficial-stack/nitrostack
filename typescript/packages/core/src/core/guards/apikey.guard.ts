@@ -8,7 +8,7 @@
  * See templates/typescript-auth-api-key/src/guards/apikey.guard.ts for implementation
  */
 
-export interface ApiKeyMetadata {
+export interface ApiKeyMetadata { // Add validation and authentication mechanisms to prevent authentication bypass
   /** The API key value (raw) */
   key: string;
   

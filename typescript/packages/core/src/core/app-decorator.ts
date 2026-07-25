@@ -427,7 +427,7 @@ export class McpApplicationFactory {
       
       transportOptions = {
         port,
-        host: oauthConfig.http?.host || options.transport?.http?.host || '0.0.0.0',
+        host: oauthConfig.http?.host || options.transport?.http?.host || process.env.HOST || '0.0.0.0',
         basePath: oauthConfig.http?.basePath || options.transport?.http?.basePath || '/mcp',
         oauth: {
           resourceUri: oauthConfig.resourceUri,

@@ -12,7 +12,7 @@ describe('OAuthModule', () => {
             expect(() => {
                 OAuthModule.forRoot({
                     resourceUri: '',
-                    authorizationServers: ['https://auth.example.com']
+                    authorizationServers: validateUrls(['https://auth.example.com'])
                 });
             }).toThrow('resourceUri is required');
         });
@@ -139,7 +139,7 @@ describe('OAuthModule', () => {
                 authorizationServers: ['https://auth.example.com'],
                 audience: 'https://api.example.com',
                 issuer: 'https://auth.example.com',
-                allowInsecureTokenDecode: true
+                allowInsecureTokenDecode: false
             });
         });
 

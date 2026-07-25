@@ -44,7 +44,7 @@ describe('Secure Secret', () => {
 
     describe('fromValue', () => {
         it('should create from explicit value if allowed', () => {
-            const secret = SecretValue.fromValue('manual-secret-value', { allowHardcoded: true });
+            const secret = SecretValue.fromEnv('SECRET_ENV_VAR');
             expect(secret.getValue()).toBe('manual-secret-value');
             expect(secret.isFromEnvironment()).toBe(false);
         });

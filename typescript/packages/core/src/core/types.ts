@@ -290,7 +290,7 @@ export interface AuthContext {
   claims?: Record<string, JsonValue>;
   /** Full decoded token payload (for backward compatibility) */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  tokenPayload?: any;
+  tokenPayload?: SecureTokenPayload;
 }
 
 // ============================================================================
