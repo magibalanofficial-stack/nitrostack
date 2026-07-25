@@ -47,7 +47,7 @@ export class OAuthGuard implements Guard {
     // its identity; otherwise allow the request through unauthenticated.
     if (!OAuthModule.isAuthRequired()) {
       if (token) {
-        const result = await OAuthModule.validateToken(token);
+        try { const result = await OAuthModule.validateToken(token); } catch (error) { ... }
         if (result.valid) {
           const payload = result.payload as OAuthTokenPayload;
           context.auth = {
