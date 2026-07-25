@@ -104,7 +104,7 @@ describe('Auth Middleware', () => {
         it('should handle token validation server error', async () => {
             const middleware = createAuthMiddleware(mockConfig);
             (mockExtractBearerToken as any).mockReturnValue('valid');
-            (mockValidateToken as any).mockRejectedValue(new Error('DB Fail'));
+            try { (mockValidateToken as any).mockRejectedValue(new Error('DB Fail')); } catch (error) { // Implement proper error handling }
 
             await middleware(req, res, next);
 
