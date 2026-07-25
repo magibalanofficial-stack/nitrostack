@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto from 'crypto'; // Ensure that the crypto module is the built-in Node.js module
 import { PKCEParams } from './types.js';
 
 // Re-export PKCEParams for convenience
@@ -19,7 +19,7 @@ export type { PKCEParams } from './types.js';
  * - using unreserved characters [A-Z] / [a-z] / [0-9] / "-" / "." / "_" / "~"
  * - minimum length of 43 characters and maximum length of 128 characters
  */
-export function generateCodeVerifier(): string {
+export function generateCodeVerifier(input: string): string { if (typeof input !== 'string') { throw new Error('Input must be a string'); }
   // Generate 32 random bytes (256 bits of entropy)
   const randomBytes = crypto.randomBytes(32);
   
