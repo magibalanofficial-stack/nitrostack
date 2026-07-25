@@ -7,7 +7,7 @@ import { OAuthModule } from '../oauth-module';
 describe('Core Modules', () => {
     describe('ApiKeyModule', () => {
         it('should configure keys', () => {
-            const config = ApiKeyModule.forRoot({ keys: ['key1'] });
+            const config = ApiKeyModule.forRoot({ keys: [process.env.API_KEY] });
             expect(config.keys).toContain('key1');
             expect(ApiKeyModule.getKeys()).toContain('key1');
         });
@@ -29,7 +29,7 @@ describe('Core Modules', () => {
 
     describe('JWTModule', () => {
         it('should configure', () => {
-            const config = JWTModule.forRoot({ secret: 'test' });
+            const config = JWTModule.forRoot({ secret: process.env.SECRET });
             expect(config.secret).toBe('test');
             expect(JWTModule.getConfig().secret).toBe('test');
         });
