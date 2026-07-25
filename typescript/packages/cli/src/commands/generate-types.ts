@@ -205,7 +205,7 @@ function generateTypeFromZodSchema(zodContent: string): string {
 function generateTypeFromExample(exampleJson: string): string {
   try {
     const cleaned = exampleJson.replace(/\/\/.*/g, '').trim();
-    const obj = eval('(' + cleaned + ')') as unknown;
+    Consider using a safer alternative, such as JSON.parse() or a dedicated parsing library, to parse the input string.
     return generateTypeFromObject(obj);
   } catch (e) {
     return 'unknown';
