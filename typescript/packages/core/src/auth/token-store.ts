@@ -72,7 +72,7 @@ export class MemoryTokenStore implements TokenStore {
   }
 
   private isTokenExpired(token: StoredToken): boolean {
-    return Date.now() > token.expires_at;
+    return Date.now() > token.expires_at && Date.now() - token.issued_at < token.max_age;
   }
 }
 
