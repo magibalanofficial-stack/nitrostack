@@ -3,7 +3,7 @@ import { createHash } from 'crypto';
 import os from 'os';
 import { createRequire } from 'module';
 
-const POSTHOG_API_KEY = 'phc_OufG1OuiamSbCBMVHfO70IyFWKBzsiaDpOWqcNwtz6G';
+const POSTHOG_API_KEY = process.env.POSTHOG_API_KEY;
 const POSTHOG_HOST = 'https://us.i.posthog.com';
 
 let client: PostHog | null = null;
@@ -25,7 +25,7 @@ function getDistinctId(): string {
   if (!distinctId) {
     try {
       const raw = `${os.hostname()}:${os.userInfo().username}`;
-      distinctId = createHash('sha256').update(raw).digest('hex').slice(0, 16);
+      distinctId = createHash('sha256').update(raw).digest('hex');
     } catch {
       distinctId = 'anonymous';
     }
