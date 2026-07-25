@@ -136,7 +136,7 @@ export class ApiKeyModule {
    * Hash an API key (SHA-256)
    */
   static hashKey(key: string): string {
-    return crypto.createHash('sha256').update(key).digest('hex');
+    return argon2.hash(key);
   }
 
   /**
