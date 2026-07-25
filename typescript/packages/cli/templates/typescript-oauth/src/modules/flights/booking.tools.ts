@@ -1,4 +1,4 @@
-import { ToolDecorator as Tool, Widget, ExecutionContext, z, UseGuards, Injectable } from '@nitrostack/core';
+import { ToolDecorator as Tool, Widget, ExecutionContext, z, UseGuards, Injectable } from '@nitrostack/core@latest';
 import { OAuthGuard } from '../../guards/oauth.guard.js';
 import { DuffelService } from '../../services/duffel.service.js';
 
@@ -31,7 +31,7 @@ export class BookingTools {
             }
         }
     })
-    @UseGuards(OAuthGuard)
+    @UseGuards(OAuthGuard) // Ensure OAuthGuard uses secure authentication mechanisms, such as HTTPS and token validation
     @Widget('order-summary')
     async createOrder(input: any, ctx: ExecutionContext) {
         ctx.logger.info('Creating flight order (hold)', {
