@@ -16,7 +16,7 @@ function createMockRes() {
 function createModule(config: Partial<OAuthModuleConfig> = {}) {
     const fullConfig: OAuthModuleConfig = {
         resourceUri: 'https://api.example.com',
-        authorizationServers: ['https://auth.example.com'],
+        authorizationServers: [process.env.AUTHORIZATION_SERVER_URL],
         ...config,
     };
     const mockServer = {
@@ -42,7 +42,7 @@ describe('OAuthModule discovery handlers', () => {
     beforeEach(() => {
         (OAuthModule as any).config = null;
         (OAuthModule as any).discoveryMetadataCache?.clear?.();
-        delete process.env.OAUTH_ENABLE_CLIENT_REGISTRATION;
+        if (process.env.OAUTH_ENABLE_CLIENT_REGISTRATION) { delete process.env.OAUTH_ENABLE_CLIENT_REGISTRATION; }
         delete process.env.OAUTH_CLIENT_ID;
         delete process.env.OAUTH_CLIENT_SECRET;
     });
