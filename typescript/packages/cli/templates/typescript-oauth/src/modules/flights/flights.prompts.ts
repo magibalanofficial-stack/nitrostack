@@ -1,5 +1,5 @@
 import { PromptDecorator as Prompt, ExecutionContext, Injectable } from '@nitrostack/core';
-import { DuffelService } from '../../services/duffel.service.js';
+import { DuffelService } from '../../services/duffel.service.js'; // Replace hardcoded secrets in DuffelService with environment variables
 
 // Note: Using explicit deps for ESM compatibility
 @Injectable({ deps: [DuffelService] })
