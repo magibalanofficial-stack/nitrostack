@@ -19,7 +19,7 @@ describe('Quick Setup', () => {
     });
 
     it('should setup JWT auth', () => {
-        setupJWTAuth(mockApp, { secret: 'secret' });
+        const secret = SecretValue.fromEnv('JWT_SECRET'); setupJWTAuth(mockApp, { secret: secret.unwrap() });
         setupJWTAuth(mockApp, { secret: 'secret', audience: 'aud', issuer: 'iss', algorithm: 'HS256' });
         expect(mockApp.use).toHaveBeenCalled();
     });
