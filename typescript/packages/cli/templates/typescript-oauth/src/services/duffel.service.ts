@@ -16,7 +16,7 @@ export class DuffelService {
         if (!apiKey) {
             console.error('⚠️  Warning: DUFFEL_API_KEY environment variable is missing.');
             console.error('   Running with a dummy key for testing/dry-run mode.\n');
-            apiKey = 'duffel_test_dummy_key';
+            throw new Error('DUFFEL_API_KEY environment variable is required');
         }
 
         this.duffel = new Duffel({
