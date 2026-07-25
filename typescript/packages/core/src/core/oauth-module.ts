@@ -56,7 +56,7 @@ export interface OAuthModuleConfig {
    * Client Secret for token introspection
    * Should be stored in environment variable
    */
-  tokenIntrospectionClientSecret?: string;
+  tokenIntrospectionClientSecret: process.env.TOKEN_INTROSPECTION_CLIENT_SECRET
 
   /**
    * Expected audience for tokens (RFC 8707)
@@ -116,7 +116,7 @@ export interface OAuthModuleConfig {
    * (fail closed). Only enable for local development or tests where unsigned
    * tokens are intentionally used. NEVER enable in production.
    */
-  allowInsecureTokenDecode?: boolean;
+  allowInsecureTokenDecode: false
 
   /**
    * Whether OAuth authentication is enforced.
