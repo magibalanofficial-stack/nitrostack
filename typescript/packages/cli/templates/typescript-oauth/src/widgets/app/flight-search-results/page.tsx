@@ -55,7 +55,7 @@ export default function FlightSearchResults() {
 
     const handleFlightClick = async (offerId: string) => {
         try {
-            await callTool('get_flight_details', { offerId });
+            const sanitizedOfferId = validateAndSanitize(offerId); await callTool('get_flight_details', { offerId: sanitizedOfferId });
         } catch (error) {
             console.error('Failed to get flight details:', error);
         }
