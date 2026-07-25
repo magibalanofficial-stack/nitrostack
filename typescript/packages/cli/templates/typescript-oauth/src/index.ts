@@ -33,7 +33,7 @@ async function bootstrap() {
       console.error('⚠️  Warning: Missing RESOURCE_URI or AUTH_SERVER_URL environment variables.');
       console.error('   Defaulting to local test endpoints. Copy .env.example to .env to configure.\n');
       process.env.RESOURCE_URI = process.env.RESOURCE_URI || 'http://localhost:3000';
-      process.env.AUTH_SERVER_URL = process.env.AUTH_SERVER_URL || 'http://localhost:8080/auth';
+      process.env.AUTH_SERVER_URL = process.env.AUTH_SERVER_URL; // Remove hardcoded default
     }
 
     // Create the MCP application
